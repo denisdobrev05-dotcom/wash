@@ -101,7 +101,7 @@ function renderStart() {
   const screen = el(`
     <section class="screen start">
       <div class="logo">🚿</div>
-      <h1>Миене на DS3</h1>
+      <h1>Миене на кола</h1>
       <p class="sub">Воден гид стъпка по стъпка</p>
       <p class="question">Днес WetCoat ден ли е?</p>
       <div class="choices">
@@ -245,7 +245,7 @@ function renderFinal() {
     <section class="screen final">
       <div class="logo">🎉</div>
       <h1>Готово!</h1>
-      <p class="sub">DS3 е чиста${state.wetcoat ? ' и с пресен WetCoat' : ''}.</p>
+      <p class="sub">Колата е чиста${state.wetcoat ? ' и с пресен WetCoat' : ''}.</p>
 
       <div class="summary">
         <h3>Петте правила</h3>
