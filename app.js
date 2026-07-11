@@ -279,5 +279,14 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+/* ---------- Спри double-tap zoom (резервно, за iOS) ---------- */
+// Дори когато CSS touch-action се игнорира, блокираме второто бързо тапване.
+let lastTouchEnd = 0;
+document.addEventListener('touchend', (e) => {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 320) e.preventDefault();
+  lastTouchEnd = now;
+}, { passive: false });
+
 /* ---------- Старт ---------- */
 renderStart();
