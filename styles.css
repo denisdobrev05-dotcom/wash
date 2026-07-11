@@ -51,6 +51,9 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+  /* Спира double-tap zoom-а на iOS (пинч-зуумът остава наличен). */
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -95,6 +98,8 @@ body {
   font-family: inherit;
   transition: transform 0.05s ease, filter 0.15s ease;
   width: 100%;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn:active { transform: scale(0.98); }
 
