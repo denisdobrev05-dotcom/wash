@@ -1,0 +1,271 @@
+:root {
+  --bg: #f1f5f9;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --primary: #2563eb;
+  --primary-ink: #ffffff;
+  --tip-bg: #eff6ff;
+  --tip-border: #bfdbfe;
+  --warn-bg: #fef3c7;
+  --warn-border: #fcd34d;
+  --warn-text: #92400e;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+  /* цветове на частите */
+  --part-a: #2563eb;
+  --part-b: #7c3aed;
+  --part-v: #0d9488;
+  --part-g: #ea580c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-2: #172033;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+    --primary: #3b82f6;
+    --primary-ink: #ffffff;
+    --tip-bg: #17233c;
+    --tip-border: #1e3a8a;
+    --warn-bg: #3a2e0a;
+    --warn-border: #a16207;
+    --warn-text: #fcd34d;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+    --part-a: #3b82f6;
+    --part-b: #a78bfa;
+    --part-v: #2dd4bf;
+    --part-g: #fb923c;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 520px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: max(16px, env(safe-area-inset-top)) 16px
+           max(20px, env(safe-area-inset-bottom)) 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Общи елементи ---------- */
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: fade 0.25s ease;
+}
+@keyframes fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.05s ease, filter 0.15s ease;
+  width: 100%;
+}
+.btn:active { transform: scale(0.98); }
+
+.btn-primary { background: var(--primary); color: var(--primary-ink); }
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1.5px solid var(--border);
+}
+
+/* ---------- Стартов екран ---------- */
+.start { justify-content: center; text-align: center; gap: 8px; }
+.start .logo { font-size: 64px; line-height: 1; margin-bottom: 4px; }
+.start h1 { font-size: 30px; margin: 4px 0 0; }
+.start .sub { color: var(--muted); margin: 0 0 8px; }
+.start .question { font-size: 20px; font-weight: 600; margin: 24px 0 4px; }
+.start .choices { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.start .last-hint { color: var(--muted); font-size: 14px; margin-top: 4px; min-height: 20px; }
+.start .info-link {
+  margin-top: 28px;
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ---------- Прогрес ---------- */
+.topbar { margin-bottom: 20px; }
+.progress-track {
+  height: 8px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: var(--part-color, var(--primary));
+  transition: width 0.3s ease;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.part-badge {
+  font-weight: 700;
+  color: var(--part-color, var(--primary));
+}
+
+/* ---------- Карта на стъпка ---------- */
+.step { justify-content: space-between; }
+.card {
+  background: var(--surface);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 28px 22px;
+  text-align: center;
+  border-top: 5px solid var(--part-color, var(--primary));
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.card .emoji { font-size: 76px; line-height: 1; margin-bottom: 6px; }
+.card h2 { font-size: 24px; margin: 0; }
+.card .instruction { font-size: 18px; color: var(--text); margin: 6px 0 0; }
+
+.note {
+  text-align: left;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 15px;
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.note .ico { font-size: 18px; flex-shrink: 0; }
+.note.tip { background: var(--tip-bg); border: 1px solid var(--tip-border); }
+.note.warn { background: var(--warn-bg); border: 1px solid var(--warn-border); color: var(--warn-text); }
+
+/* ---------- Таймер ---------- */
+.timer { margin-top: 18px; text-align: center; }
+.timer-display {
+  font-size: 44px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+  margin: 4px 0 12px;
+}
+.timer-display.done { color: var(--part-v); }
+.timer .btn { max-width: 220px; margin: 0 auto; }
+
+/* ---------- Навигация ---------- */
+.nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.nav .btn { flex: 1; }
+
+/* ---------- Финален екран ---------- */
+.final { justify-content: center; text-align: center; gap: 10px; }
+.final .logo { font-size: 72px; }
+.final h1 { font-size: 30px; margin: 0; }
+.final .summary {
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+  text-align: left;
+  margin: 16px 0;
+}
+.final .summary h3 { margin: 0 0 10px; font-size: 17px; }
+.final .rules { margin: 0; padding-left: 20px; }
+.final .rules li { margin: 6px 0; font-size: 15px; }
+.final .actions { display: flex; flex-direction: column; gap: 12px; }
+
+/* ---------- Инфо панел (overlay) ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 50;
+  animation: fade 0.2s ease;
+  padding: 0;
+}
+.sheet {
+  background: var(--surface);
+  width: 100%;
+  max-width: 520px;
+  border-radius: 24px 24px 0 0;
+  padding: 24px 22px max(28px, env(safe-area-inset-bottom));
+  position: relative;
+  animation: slideUp 0.25s ease;
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: none; }
+}
+.sheet h2 { margin: 0 0 12px; font-size: 22px; }
+.sheet .rules { margin: 0; padding-left: 22px; }
+.sheet .rules li { margin: 10px 0; font-size: 16px; }
+.sheet-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+[hidden] { display: none !important; }

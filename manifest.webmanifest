@@ -1,0 +1,27 @@
+{
+  "name": "Миене на DS3",
+  "short_name": "Миене DS3",
+  "description": "Интерактивен воден гид за миене на Citroën DS3 стъпка по стъпка.",
+  "lang": "bg",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

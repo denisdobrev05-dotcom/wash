@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Миене на DS3</title>
+  <meta name="description" content="Интерактивен воден гид за миене на Citroën DS3 стъпка по стъпка." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Миене DS3" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <link rel="icon" href="icons/icon-192.png" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="app"><!-- екраните се рендерират тук от app.js --></div>
+
+  <!-- Инфо панел с петте правила -->
+  <div id="infoOverlay" class="overlay" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+      <button class="sheet-close" id="infoClose" aria-label="Затвори">✕</button>
+      <h2 id="infoTitle">Петте правила</h2>
+      <ol class="rules">
+        <li><strong>Кофа и гъба за джанти</strong> — само за джанти.</li>
+        <li><strong>Джанти винаги първо</strong>, после каросерия.</li>
+        <li><strong>WetCoat не е всеки път</strong> — на 2–3 месеца.</li>
+        <li><strong>Първите 1–2 седмици след ремонта:</strong> само миене.</li>
+        <li><strong>Водоструйка на 20–30 см</strong> от ръбовете.</li>
+      </ol>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
