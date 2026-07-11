@@ -1,7 +1,7 @@
 'use strict';
 
 // При промяна на файловете вдигни версията, за да се обнови кешът.
-const CACHE = 'wash-v3';
+const CACHE = 'wash-v4';
 
 // Относителни пътища — за да работи и под подпапка (GitHub Pages project page).
 const ASSETS = [

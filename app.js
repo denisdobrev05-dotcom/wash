@@ -93,11 +93,6 @@ function clearTimer() {
 /* ---------- Стартов екран ---------- */
 function renderStart() {
   clearTimer();
-  const last = localStorage.getItem(LS_KEY);
-  let hint = '';
-  if (last === 'yes') hint = 'Последно: WetCoat ден ✓';
-  else if (last === 'no') hint = 'Последно: само миене';
-
   const screen = el(`
     <section class="screen start">
       <div class="logo">🚿</div>
@@ -108,7 +103,6 @@ function renderStart() {
         <button class="btn btn-primary" data-choice="yes">Да — слагам WetCoat</button>
         <button class="btn btn-secondary" data-choice="no">Не — само миене</button>
       </div>
-      <p class="last-hint">${hint}</p>
       <button class="info-link" id="startInfo">ℹ️ Петте правила</button>
     </section>
   `);
