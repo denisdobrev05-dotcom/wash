@@ -1,7 +1,7 @@
 'use strict';
 
 // При промяна на файловете вдигни версията, за да се обнови кешът.
-const CACHE = 'wash-v2';
+const CACHE = 'wash-v3';
 
 // Относителни пътища — за да работи и под подпапка (GitHub Pages project page).
 const ASSETS = [
@@ -30,26 +30,29 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Cache-first: първо от кеша (офлайн), после мрежа с fallback към index.html за навигации.
+// Network-first: онлайн винаги показва свежото съдържание (и обновява кеша),
+// а офлайн пада обратно към кеша. Така обновленията не „засядат“ в кеша.
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
 
+  // Само същодоменни заявки минават през нашата стратегия.
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return;
+
   event.respondWith(
-    caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req)
-        .then((res) => {
-          // кеширай новополучени същодоменни ресурси
-          if (res && res.status === 200 && res.type === 'basic') {
-            const copy = res.clone();
-            caches.open(CACHE).then((c) => c.put(req, copy));
-          }
-          return res;
-        })
-        .catch(() => {
-          if (req.mode === 'navigate') return caches.match('index.html');
-        });
-    })
+    fetch(req)
+      .then((res) => {
+        // Успешен отговор от мрежата → обнови кеша и върни свежото.
+        if (res && res.status === 200 && res.type === 'basic') {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(req, copy));
+        }
+        return res;
+      })
+      .catch(() =>
+        // Няма мрежа → от кеша; за навигация падни към index.html.
+        caches.match(req).then((cached) => cached || caches.match('index.html'))
+      )
   );
 });
